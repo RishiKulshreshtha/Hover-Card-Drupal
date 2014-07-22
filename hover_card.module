@@ -1,0 +1,42 @@
+<?php
+
+function hover_card_init() {
+  $modulePath = drupal_get_path('module', 'hover_card');
+  drupal_add_js(array(
+    'hover_card' => array(
+      'path' => $modulePath,
+    ),
+  ), 'setting');
+}
+
+function hover_card_menu() {
+  $items['hover-card'] = array(
+    'title' => 'Hover Card',
+    'page callback' => 'hover_card',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function hover_card() {
+  $id = $_GET['id'];
+  $user_fields = user_load($id);
+
+  $name = $user_fields->name;
+
+  foreach ($user_fields->roles as $key => $value) {
+    if ($key != 2) {
+      $user_roles = ucwords($value);
+    }
+  }
+
+  $array = array(
+    'name' => $name,
+    'user_roles' => $user_roles,
+  );
+
+  $json = json_encode($array);
+  print_r($json);
+  exit;
+}
