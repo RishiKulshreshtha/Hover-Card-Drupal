@@ -7,21 +7,26 @@
                 detailsHTML: hoverUserDetails,
                 width: 250,
                 onHoverIn: function() {
-                    var title = $(this).text();
+                    var user_id = $(this).find("a").attr("href").split("/");
                     $.ajax({
                         url: Drupal.settings.basePath + "hover-card",
                         type: 'GET',
                         data: {
-                            id: title,
+                            id: user_id[3],
                         },
                         beforeSend: function() {
                             $(".hover-details").empty();
-                            $(".hover-details").prepend('<p class="loading-text"><img src="' + modulePath + '/images/ajax-loader.gif"></p>');
+                            $(".hover-details").prepend('<p style="text-align: center"><img src="' + modulePath + '/images/ajax-loader.gif"></p>');
                         },
                         success: function(data) {
                             var obj = $.parseJSON(data);
                             $(".hover-details").empty();
-                            $(".hover-details").html('<strong>' + obj.name + '<strong>');
+                            var result = "";
+                            if (obj.picture != null) {
+                                result += obj.picture;
+                            }
+                            result += '<strong>Username: </strong>' + obj.name + '<br/><strong>Email: </strong>' + obj.mail + '<br/><strong>Roles: </strong>' + obj.roles + '<br/>';
+                            $(".hover-details").html(result);
                         },
                         complete: function() {
                             $('.loading-text').remove();
