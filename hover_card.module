@@ -1,15 +1,47 @@
 <?php
 
 /**
+ * @file
+ * Provides Hover Card for all user links with "username" as their class.
+ */
+
+/**
+ * The default path to the Hover Card directory.
+ */
+define('HOVER_CARD_MIN_PLUGIN_VERSION', '1.0');
+
+/**
  * Implements hook_init().
  */
 function hover_card_init() {
-  $modulePath = drupal_get_path('module', 'hover_card');
-  drupal_add_js(array(
-    'hover_card' => array(
-      'path' => $modulePath,
+  $module_path = drupal_get_path('module', 'hover_card');
+
+  // Add and initialise the Hover Card Plugin.
+  libraries_load('hover_card', $variant = NULL);
+  drupal_add_js($module_path . '/javascripts/hover_card.js');
+  drupal_add_js(array('hover_card' => array('module_path' => $module_path)), array('type' => 'setting', 'scope' => JS_DEFAULT));
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function hover_card_libraries_info() {
+  $libraries['hover_card'] = array(
+    'name' => 'Hover Card Plugin',
+    'vendor url' => 'http://designwithpc.com/Plugins/Hovercard',
+    'download url' => 'https://github.com/prashantchaudhary/hovercard/archive/master.zip',
+    'version arguments' => array(
+      'file' => 'jquery.hovercard.js',
+      'pattern' => '@[\s\S]*(?<=Version )([0-9.]+)@',
     ),
-  ), 'setting');
+    'files' => array(
+      'js' => array(
+        'jquery.hovercard.min.js',
+      ),
+    ),
+  );
+
+  return $libraries;
 }
 
 /**
@@ -28,7 +60,8 @@ function hover_card_menu() {
 /**
  * Implements hover_card().
  *
- * Here we'll fetch the values from $_GET[] request and then using json_encode() we'll encode those values.
+ * Here we'll fetch the values from $_GET[] request and then using json_encode()
+ * we'll encode those values.
  */
 function hover_card() {
   $id = $_GET['id'];
@@ -37,7 +70,7 @@ function hover_card() {
   if (isset($user_fields->name) && !empty($user_fields->name)) {
     $name = $user_fields->name;
   }
-  
+
   if (isset($user_fields->mail) && !empty($user_fields->mail)) {
     $mail = $user_fields->mail;
   }
@@ -48,10 +81,10 @@ function hover_card() {
       'path' => $user_fields->picture->uri,
       'attributes' => array(
         'style' => 'height:32px;width:32px;float:right;',
-        )
-      )
+      ),
+     )
     );
-  }  
+  }
 
   foreach ($user_fields->roles as $key => $value) {
     if ($key != 2) {
