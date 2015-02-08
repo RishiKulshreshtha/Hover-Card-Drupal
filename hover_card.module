@@ -5,6 +5,8 @@
  * Provides Hover Card for all user links with "username" as their class.
  */
 
+use Drupal\Core\Routing\RouteMatchInterface;
+
 /**
  * The minimum version of Hover Card required.
  */
@@ -13,10 +15,10 @@ define('HOVER_CARD_MIN_PLUGIN_VERSION', '1.0');
 /**
  * Implements hook_help().
  */
-function hover_card_help($path, $arg) {
+function hover_card_help($route_name, RouteMatchInterface $route_match) {
   global $base_url;
-  switch ($path) {
-    case 'admin/help#hover_card':
+  switch ($route_name) {
+    case 'help.page.hover_card':
       $output = '';
       $output .= '<p>' . t('Hovercard is a module which is based on <a href="@hovercard">hovercard</a> which is a free light weight jQuery plugin that enables you to display related information with the hovered label, link, or any html element of your choice. This module extends Drupal to provide Hovercard for the users of the website.', array('@hovercard' => 'http://designwithpc.com/Plugins/Hovercard')) . '</p>';
       $output .= '<h6>' . t('Dependencies') . '</h6>';
