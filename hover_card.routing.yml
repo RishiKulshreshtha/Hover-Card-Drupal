@@ -1,0 +1,6 @@
+hover_card.admin_settings:
+  path: '/admin/config/people/hover-card'
+  defaults:
+    _form: '\Drupal\hover_card\Form\HoverCardSettings'
+  requirements:
+    _permission: 'hover card config'
