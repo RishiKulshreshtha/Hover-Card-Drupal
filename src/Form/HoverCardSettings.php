@@ -23,7 +23,7 @@ class HoverCardSettings extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     
-    $config = \Drupal::config('hover_cart.settings');
+    $config = \Drupal::config('hover_card.settings');
 
     $form['personalization'] = array(
       '#type' => 'fieldset',
@@ -43,7 +43,7 @@ class HoverCardSettings extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
-    $config = \Drupal::config('hover_cart.settings');
+    $config = \Drupal::config('hover_card.settings');
     $userInputValues = $form_state->getUserInput();
     
     $config->set('hover_card_user_email_display_status', $userInputValues['hover_card_user_email_display_status']);

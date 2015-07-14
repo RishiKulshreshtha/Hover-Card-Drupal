@@ -1,6 +1,6 @@
 # Schema for the configuration files of the Action module.
 
-hover_cart.settings:
+hover_card.settings:
   type: mapping
   label: 'Hover Cart settings'
   mapping:
