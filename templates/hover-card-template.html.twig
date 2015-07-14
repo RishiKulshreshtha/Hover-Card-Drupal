@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override to present the layout of the Hover Card.
+ *
+ * Available variables:
+ * - name: Use this to display the name of the user.
+ * - mail: Use this to display the registered e-mail of the user.
+ * - picture: Use this to display the user picture.
+ * - role: Use this to display the role of the user.
+ */
+#}
+<div class="user-details">
+  <?php
+  $user_picture = {{ picture }};
+  if (!empty($user_picture)):
+  ?>
+  <div class="user-image">
+  <?php print_r($user_picture); ?>
+  </div>
+  <?php endif; ?>
+  <div class="user-name"><strong><?php print t('Username'); ?>:</strong> <?php print {{ name }}; ?></div>
+  <?php if (variable_get('hover_card_user_email_display_status', TRUE)): ?>
+  <div class="user-mail"><strong><?php print t('Email'); ?>:</strong> <a href="mailto:<?php print {{ mail }}; ?>"><?php print {{ mail }}; ?></a></div>
+  <?php endif; ?>
+  <div class="user-role"><strong><?php print t('Roles'); ?>:</strong> <?php print {{ roles }}; ?></div>
+</div>

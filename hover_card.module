@@ -158,10 +158,11 @@ function hover_card_preprocess_username(&$variables) {
  * This will render some basic output for this module.
  */
 function hover_card_theme($existing, $type, $theme, $path) {
-  return array(
-    'hover_card_template' => array(
-      'variables' => array('details' => NULL),
-      'template' => '/templates/hover-card',
-    ),
-  );
+  return [
+    'hover_card_template' => [
+      'variables' => [
+        'details' => NULL,
+      ],
+    ],
+  ];
 }
