@@ -1,4 +1,5 @@
-<?php /**
+<?php
+/**
  * @file
  * Contains \Drupal\hover_card\Controller\DefaultController.
  */
@@ -13,8 +14,7 @@ use Drupal\Core\Controller\ControllerBase;
 class DefaultController extends ControllerBase {
 
   public function hover_card(\Drupal\user\UserInterface $user = NULL) {
-    $picture = [];
-    $name = $mail = $roles = "";
+    $name = $mail = $roles = $picture = "";
 
     if (!$user->getUsername() && $user->getUsername()) {
       $name = $user->getUsername();
@@ -24,10 +24,13 @@ class DefaultController extends ControllerBase {
       $mail = $user->getEmail();
     }
 
-    if (isset($user->picture->uri) && !empty($user->picture->uri)) {
+    // @TODO: Need to debug the following commented code.
+    /*dsm($user->user_picture);
+
+    if (isset($user->user_picture->uri) && !empty($user->user_picture->uri)) {
       $picture_build = array(
         '#theme' => 'image_style',
-        '#path' => $user->picture->uri,
+        '#path' => $user->user_picture->uri,
         '#style_name' => 'thumbnail',
       );
       $picture = drupal_render($picture_build);
@@ -51,7 +54,6 @@ class DefaultController extends ControllerBase {
 
     $hover_card_template = drupal_render($hover_card_template_build);
 
-    return $hover_card_template;
+    return $hover_card_template;*/
   }
-
 }

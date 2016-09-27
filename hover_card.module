@@ -107,18 +107,15 @@ function hover_card_permission() {
  * @param array $user
  *   Array with parameters for this action: depends on the trigger.
  */
-function hover_card($user = array()) {
+/*function hover_card($user = array()) {
   $picture = array();
   $name = $mail = $roles = "";
-
   if (isset($user->name) && !empty($user->name)) {
     $name = $user->name;
   }
-
   if (isset($user->mail) && !empty($user->mail) && \Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) {
     $mail = $user->mail;
   }
-
   if (isset($user->picture->uri) && !empty($user->picture->uri)) {
     $picture_build = array(
       '#theme' => 'image_style',
@@ -127,28 +124,22 @@ function hover_card($user = array()) {
     );
     $picture = drupal_render($picture_build);
   }
-
   foreach ($user->roles as $value) {
     $roles = $value;
   }
-
   $user_data = array(
     'name' => \Drupal\Component\Utility\SafeMarkup::checkPlain($name),
     'mail' => \Drupal\Component\Utility\SafeMarkup::checkPlain($mail),
     'picture' => $picture,
     'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
   );
-
   $hover_card_template_build = array(
     '#theme' => 'hover_card_template',
     '#details' => $user_data,
   );
-
   $hover_card_template = drupal_render($hover_card_template_build);
-
   return $hover_card_template;
-
-}
+}*/
 
 /**
  * Page callback; Initiates when 'hover-card/%user' path is accessed.
