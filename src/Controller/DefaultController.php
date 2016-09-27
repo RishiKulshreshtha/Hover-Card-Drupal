@@ -12,7 +12,7 @@ use Drupal\Core\Controller\ControllerBase;
  */
 class DefaultController extends ControllerBase {
 
-  public function hover_card(\Drupal\user\UserInterface $user = []) {
+  public function hover_card(\Drupal\user\UserInterface $user = NULL) {
     $picture = [];
     $name = $mail = $roles = "";
 
@@ -25,20 +25,12 @@ class DefaultController extends ControllerBase {
     }
 
     if (isset($user->picture->uri) && !empty($user->picture->uri)) {
-      // @FIXME
-// theme() has been renamed to _theme() and should NEVER be called directly.
-// Calling _theme() directly can alter the expected output and potentially
-// introduce security issues (see https://www.drupal.org/node/2195739). You
-// should use renderable arrays instead.
-//
-//
-// @see https://www.drupal.org/node/2195739
-// $picture  = theme('image_style', array(
-//       'style_name' => 'thumbnail',
-//       'path' => $user->picture->uri,
-//      )
-//     );
-
+      $picture_build = array(
+        '#theme' => 'image_style',
+        '#path' => $user->picture->uri,
+        '#style_name' => 'thumbnail',
+      );
+      $picture = drupal_render($picture_build);
     }
 
     foreach ($user->roles as $value) {
@@ -52,16 +44,14 @@ class DefaultController extends ControllerBase {
       'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
     ];
 
-    // @FIXME
-    // theme() has been renamed to _theme() and should NEVER be called directly.
-    // Calling _theme() directly can alter the expected output and potentially
-    // introduce security issues (see https://www.drupal.org/node/2195739). You
-    // should use renderable arrays instead.
-    //
-    //
-    // @see https://www.drupal.org/node/2195739
-    // return theme('hover_card_template', array('details' => $user_data));
+    $hover_card_template_build = array(
+      '#theme' => 'hover_card_template',
+      '#details' => $user_data,
+    );
 
+    $hover_card_template = drupal_render($hover_card_template_build);
+
+    return $hover_card_template;
   }
 
 }
