@@ -1,0 +1,7 @@
+hover_card_libraries_key_1:
+  version: 1.x
+  js:
+    js/hover_card.js: {}
+  css:
+    theme:
+    css/hover_card.css: {}
