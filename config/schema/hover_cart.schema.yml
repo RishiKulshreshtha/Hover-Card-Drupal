@@ -1,9 +1,0 @@
-# Schema for the configuration files of the Action module.
-
-hover_card.settings:
-  type: mapping
-  label: 'Hover Cart settings'
-  mapping:
-    hover_card_user_email_display_status:
-      type: boolean
-      label: 'User Email'

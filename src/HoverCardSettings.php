@@ -1,15 +1,5 @@
 <?php
-
-/**
- * @file
- * Contains \Drupal\hover_card\Form\HoverCardSettings.
- */
-
-namespace Drupal\hover_card\Form;
-
-use Drupal\Core\Form\ConfigFormBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element;
+namespace Drupal\hover_card;
 
 class HoverCardSettings extends ConfigFormBase {
 
