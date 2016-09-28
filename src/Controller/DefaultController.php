@@ -24,26 +24,18 @@ class DefaultController extends ControllerBase {
       $mail = $user->getEmail();
     }
 
-    // @TODO: Need to debug the following commented code.
-    /*dsm($user->user_picture);
-
-    if (isset($user->user_picture->uri) && !empty($user->user_picture->uri)) {
-      $picture_build = array(
-        '#theme' => 'image_style',
-        '#path' => $user->user_picture->uri,
-        '#style_name' => 'thumbnail',
-      );
-      $picture = drupal_render($picture_build);
+    if ($user->get('user_picture')->entity->url()) {
+      $user_picture = $user->get('user_picture')->entity->url();
     }
 
-    foreach ($user->roles as $value) {
+    foreach ($user->getRoles() as $value) {
       $roles = $value;
     }
 
     $user_data = [
       'name' => \Drupal\Component\Utility\SafeMarkup::checkPlain($name),
       'mail' => \Drupal\Component\Utility\SafeMarkup::checkPlain($mail),
-      'picture' => $picture,
+      'picture' => $user_picture,
       'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
     ];
 
@@ -54,6 +46,6 @@ class DefaultController extends ControllerBase {
 
     $hover_card_template = drupal_render($hover_card_template_build);
 
-    return $hover_card_template;*/
+    return $hover_card_template;
   }
 }

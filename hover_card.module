@@ -65,31 +65,6 @@ function hover_card_libraries_info() {
 }
 
 /**
- * Implements hook_menu().
- */
-function hover_card_menu() {
-  $items['hover-card/%user'] = array(
-    'title' => 'Hover Card',
-    'page callback' => 'hover_card',
-    'page arguments' => array(1),
-    'access arguments' => array('access user profiles'),
-    'type' => MENU_CALLBACK,
-    'delivery callback' => 'hover_card_ajax_callback',
-  );
-  $items['admin/config/people/hover-card'] = array(
-    'title' => 'Hover Card Settings',
-    'description' => 'Control default behavior of Hover Card, whether to display the Email address of the users or not.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('hover_card_settings'),
-    'access arguments' => array('hover card config'),
-    'file' => 'hover_card.admin.inc',
-    'weight' => 0,
-  );
-
-  return $items;
-}
-
-/**
  * Implements hook_permission().
  */
 function hover_card_permission() {
@@ -100,46 +75,6 @@ function hover_card_permission() {
     ),
   );
 }
-
-/**
- * Returns HTML with hovered user details.
- *
- * @param array $user
- *   Array with parameters for this action: depends on the trigger.
- */
-/*function hover_card($user = array()) {
-  $picture = array();
-  $name = $mail = $roles = "";
-  if (isset($user->name) && !empty($user->name)) {
-    $name = $user->name;
-  }
-  if (isset($user->mail) && !empty($user->mail) && \Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) {
-    $mail = $user->mail;
-  }
-  if (isset($user->picture->uri) && !empty($user->picture->uri)) {
-    $picture_build = array(
-      '#theme' => 'image_style',
-      '#path' => $user->picture->uri,
-      '#style_name' => 'thumbnail',
-    );
-    $picture = drupal_render($picture_build);
-  }
-  foreach ($user->roles as $value) {
-    $roles = $value;
-  }
-  $user_data = array(
-    'name' => \Drupal\Component\Utility\SafeMarkup::checkPlain($name),
-    'mail' => \Drupal\Component\Utility\SafeMarkup::checkPlain($mail),
-    'picture' => $picture,
-    'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
-  );
-  $hover_card_template_build = array(
-    '#theme' => 'hover_card_template',
-    '#details' => $user_data,
-  );
-  $hover_card_template = drupal_render($hover_card_template_build);
-  return $hover_card_template;
-}*/
 
 /**
  * Page callback; Initiates when 'hover-card/%user' path is accessed.
@@ -184,7 +119,7 @@ function hover_card_theme($existing, $type, $theme, $path) {
   return array(
     'hover_card_template' => array(
       'variables' => array('details' => NULL),
-      'template' => '/templates/hover-card',
+      'template' => 'templates/hover-card',
     ),
   );
 }
