@@ -4,8 +4,8 @@
     <div class="user-image">{{ user_picture }}</div>
   {% endif %}
   <div class="user-name"><strong>{{ 'Username'|t }}:</strong> {{ details.name }}</div>
-  {% if (\Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) %}
+  {# if (\Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) #}
   <div class="user-mail"><strong>{{ 'Email'|t }}:</strong> <a href="mailto:{{ details.mail }}">{{ details.mail }}</a></div>
-  {% endif %}
+  {# endif #}
   <div class="user-role"><strong>{{ 'Roles'|t }}:</strong> {{ details.roles }}</div>
 </div>

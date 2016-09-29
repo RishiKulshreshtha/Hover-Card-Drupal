@@ -24,9 +24,9 @@ class DefaultController extends ControllerBase {
       $mail = $user->getEmail();
     }
 
-    if ($user->get('user_picture')->entity->url()) {
-      $user_picture = $user->get('user_picture')->entity->url();
-    }
+    // if ($user->get('user_picture')->entity->url()) {
+    //   $user_picture = $user->get('user_picture')->entity->url();
+    // }
 
     foreach ($user->getRoles() as $value) {
       $roles = $value;
@@ -35,7 +35,7 @@ class DefaultController extends ControllerBase {
     $user_data = [
       'name' => \Drupal\Component\Utility\SafeMarkup::checkPlain($name),
       'mail' => \Drupal\Component\Utility\SafeMarkup::checkPlain($mail),
-      'picture' => $user_picture,
+      // 'picture' => $user_picture,
       'roles' => \Drupal\Component\Utility\SafeMarkup::checkPlain($roles),
     ];
 
@@ -46,6 +46,8 @@ class DefaultController extends ControllerBase {
 
     $hover_card_template = drupal_render($hover_card_template_build);
 
-    return $hover_card_template;
+    return array(
+      '#markup' => $hover_card_template,
+    );
   }
 }
