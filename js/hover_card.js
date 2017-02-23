@@ -16,9 +16,9 @@
         detailsHTML: hover_user_details,
         width: 250,
         onHoverIn: function() {
-          var base_path = Drupal.settings.basePath;
+          var base_path = settings.path.baseUrl;
           // Declaring base_path as variable for further use in image path.
-          var module_path = Drupal.settings.hover_card.module_path;
+          var module_path = settings.module_path;
           /* Declaring module_path as variable for Hover Card module path which
           is required for fetching the loader image path from the Hover Card
           module directory. */

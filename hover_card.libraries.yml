@@ -1,9 +1,16 @@
-hover_card_libraries_key_1:
-  version: 1.x
+hover_card:
+  remote: https://github.com/prashantchaudhary/hovercard
+  version: VERSION
+  license:
+    name: MIT
+    gpl-compatible: false
   js:
     js/hover_card.js: {}
-  dependencies:
-    - core/drupalSettings
+    /libraries/hover_card/jquery.hovercard.min.js: {}
   css:
     theme:
     css/hover_card.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

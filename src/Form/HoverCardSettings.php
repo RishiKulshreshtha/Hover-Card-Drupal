@@ -48,11 +48,11 @@ class HoverCardSettings extends ConfigFormBase {
   public function buildForm(array $form, \Drupal\Core\Form\FormStateInterface $form_state) {
     $form['personalization'] = [
       '#type' => 'fieldset',
-      '#title' => t('Personalization'),
+      '#title' => $this->t('Personalization'),
     ];
     $form['personalization']['hover_card_user_email_display_status'] = [
       '#type' => 'checkbox',
-      '#title' => t('Enable User Emails on Hover'),
+      '#title' => $this->t('Enable User Emails on Hover'),
       '#default_value' => \Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status'),
     ];
 

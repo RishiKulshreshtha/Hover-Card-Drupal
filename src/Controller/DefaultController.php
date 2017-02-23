@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains \Drupal\hover_card\Controller\DefaultController.
@@ -15,18 +16,14 @@ class DefaultController extends ControllerBase {
 
   public function hover_card(\Drupal\user\UserInterface $user = NULL) {
     $name = $mail = $roles = $picture = "";
-
-    if (!$user->getUsername() && $user->getUsername()) {
-      $name = $user->getUsername();
-    }
-
-    if (!$user->getEmail() && $user->getEmail() && \Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) {
-      $mail = $user->getEmail();
-    }
-
-    // if ($user->get('user_picture')->entity->url()) {
-    //   $user_picture = $user->get('user_picture')->entity->url();
-    // }
+    $name = $user->getUsername();
+    $mail = $user->getEmail();
+    //    if ($user->getEmail() && \Drupal::config('hover_card.settings')->get('hover_card_user_email_display_status')) {
+    //      
+    //    }
+    //     if ($user->get('user_picture')->entity->url()) {
+    //       $user_picture = $user->get('user_picture')->entity->url();
+    //     }
 
     foreach ($user->getRoles() as $value) {
       $roles = $value;
