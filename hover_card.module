@@ -31,7 +31,7 @@ function hover_card_help($route_name, RouteMatchInterface $route_match) {
       $output .= '</ol>';
       $output .= '<h6>' . t('Configuration') . '</h6>';
       $output .= '<ul>';
-      $output .= '<li>' . t('After enabling it please check your <a href="@status">Status Report</a> where there should be a new option showing <code>Hover Card Plugin - v1.0 installed</code> with a success (green) status.', array('@status' => '/admin/reports/status')) . '</p>';
+      $output .= '<li>' . t('After enabling it please check your <a href="@status">Status Report</a> where there should be a new option showing <code>Hover Card Plugin - v1.0 installed</code> with a success (green) status.', array('@status' => $base_url . '/admin/reports/status')) . '</p>';
       $output .= '<li>' . t('This module has no menu or modifiable settings. There is no configuration. When enabled and configured properly, this module will display the hover card to the user links with <code>username</code> as class to their anchor tags. To disable the hover card from user links, disable the module and clear caches.') . '</p>';
       $output .= '</ul>';
 
@@ -51,7 +51,8 @@ function hover_card_page_attachments(array &$page) {
  * Page callback; Initiates when 'hover-card/%user' path is accessed.
  *
  * @param string $html
- *   Prints the values at the requested menu, such as hover-card/1.
+ * Prints the values at the requested menu, such as hover-card/1.
+ * @todo Find D8 way for this!
  */
 function hover_card_ajax_callback($html) {
   // AJAX output.
