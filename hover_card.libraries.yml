@@ -5,8 +5,8 @@ hover_card:
     name: MIT
     gpl-compatible: false
   js:
-    js/hover_card.js: {}
     /libraries/hover_card/jquery.hovercard.min.js: {}
+    js/hover_card.js: {}
   css:
     theme:
     css/hover_card.css: {}
